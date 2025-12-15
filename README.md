@@ -1,3 +1,4 @@
+# nexxos-web
 # Astro Starter Kit: Minimal
 
 ```sh

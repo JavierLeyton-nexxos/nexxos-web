@@ -5,7 +5,7 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://nexxos-ai-hub.com', // Placeholder URL
+  site: 'https://www.nexxos.ai', // Placeholder URL
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en', 'pt-br'],
