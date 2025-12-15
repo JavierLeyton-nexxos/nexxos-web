@@ -1,0 +1,90 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ActionFooter from '../../components/ActionFooter.astro';
+
+export function getStaticPaths() {
+  return [
+    {params: {lang: 'en'}},
+    {params: {lang: 'pt-br'}},
+  ];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={`Contact | nexxos AI Hub`}>
+  <Navbar />
+  
+  <main class="min-h-screen pt-32 pb-24 px-6 bg-brand-bone">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Header -->
+      <div class="mb-12 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-6 text-brand-black">
+          {lang === 'es' ? 'Inicia tu Inversión' : lang === 'pt-br' ? 'Inicie seu Investimento' : 'Start your Investment'}
+        </h1>
+        <p class="text-brand-gray text-lg max-w-2xl mx-auto">
+          {lang === 'es' 
+            ? 'Cuéntanos sobre tus requerimientos de cómputo o ambiciones de inversión. Nuestro equipo responderá en menos de 24 horas.' 
+            : lang === 'pt-br' 
+              ? 'Conte-nos sobre seus requisitos de computação ou ambições de investimento. Nossa equipe responderá em menos de 24 horas.' 
+              : 'Tell us about your compute requirements or investment ambitions. Our team will respond in under 24 hours.'}
+        </p>
+      </div>
+
+      <!-- Form Container -->
+      <div class="bg-white p-8 md:p-12 rounded-bento shadow-xl border border-brand-black/5">
+        <form class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-widest text-brand-gray">
+                        {lang === 'es' ? 'Nombre Completo' : lang === 'pt-br' ? 'Nome Completo' : 'Full Name'}
+                    </label>
+                    <input type="text" class="w-full bg-brand-bone/50 border-b-2 border-brand-black/10 p-3 focus:outline-none focus:border-brand-blue transition-colors rounded-t-lg" placeholder="John Doe" />
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-widest text-brand-gray">
+                        {lang === 'es' ? 'Empresa' : lang === 'pt-br' ? 'Empresa' : 'Company'}
+                    </label>
+                    <input type="text" class="w-full bg-brand-bone/50 border-b-2 border-brand-black/10 p-3 focus:outline-none focus:border-brand-blue transition-colors rounded-t-lg" placeholder="Nexxos Inc." />
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-xs font-bold uppercase tracking-widest text-brand-gray">Email</label>
+                <input type="email" class="w-full bg-brand-bone/50 border-b-2 border-brand-black/10 p-3 focus:outline-none focus:border-brand-blue transition-colors rounded-t-lg" placeholder="john@company.com" />
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-xs font-bold uppercase tracking-widest text-brand-gray">
+                    {lang === 'es' ? 'Interés' : lang === 'pt-br' ? 'Interesse' : 'Interest'}
+                </label>
+                <select class="w-full bg-brand-bone/50 border-b-2 border-brand-black/10 p-3 focus:outline-none focus:border-brand-blue transition-colors rounded-t-lg">
+                    <option>{lang === 'es' ? 'Reserva de Capacidad (GPU)' : lang === 'pt-br' ? 'Reserva de Capacidade (GPU)' : 'Capacity Reservation (GPU)'}</option>
+                    <option>{lang === 'es' ? 'Inversión Directa' : lang === 'pt-br' ? 'Investimento Direto' : 'Direct Investment'}</option>
+                    <option>{lang === 'es' ? 'Partnership' : lang === 'pt-br' ? 'Parceria' : 'Partnership'}</option>
+                    <option>{lang === 'es' ? 'Otro' : lang === 'pt-br' ? 'Outro' : 'Other'}</option>
+                </select>
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-xs font-bold uppercase tracking-widest text-brand-gray">
+                    {lang === 'es' ? 'Mensaje' : lang === 'pt-br' ? 'Mensagem' : 'Message'}
+                </label>
+                <textarea rows="4" class="w-full bg-brand-bone/50 border-b-2 border-brand-black/10 p-3 focus:outline-none focus:border-brand-blue transition-colors rounded-t-lg"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-brand-black text-white py-4 rounded-full font-bold uppercase tracking-widest hover:bg-brand-neon hover:text-brand-black transition-colors">
+                {lang === 'es' ? 'Enviar Solicitud' : lang === 'pt-br' ? 'Enviar Solicitação' : 'Submit Request'}
+            </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <ActionFooter />
+</Layout>

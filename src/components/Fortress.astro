@@ -1,0 +1,87 @@
+---
+import { Shield, Fingerprint, Activity, Radio } from 'lucide-react';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="py-24 px-6 mx-4 rounded-bento bg-brand-black text-white relative overflow-hidden">
+  
+  <!-- Background Elements -->
+  <div class="absolute right-0 top-0 w-2/3 h-full opacity-20 mix-blend-overlay">
+    <img 
+      src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2670&auto=format&fit=crop"
+      alt="Arquitectura moderna de concreto"
+      class="w-full h-full object-cover grayscale"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/95 to-transparent z-0"></div>
+
+  <div class="relative z-10 max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+    
+    <div class="reveal">
+      <div class="flex items-center gap-2 mb-6">
+        <div class="w-2 h-2 rounded-full bg-brand-neon"></div>
+        <span class="text-brand-neon text-xs font-bold uppercase tracking-widest">{t('fortress.tag')}</span>
+      </div>
+
+      <h2 class="text-5xl md:text-6xl font-bold uppercase leading-none tracking-tight mb-6" set:html={t('fortress.title').replace('Fortaleza', 'Fortaleza<br/>').replace('Fortress', 'Fortress<br/>').replace(' no ', ' <br/>no ')} />
+
+      <p class="text-brand-gray text-lg leading-relaxed mb-12 max-w-md">
+        {t('fortress.desc')}
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        
+        <!-- Feature 1 -->
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <Fingerprint className="text-brand-blue w-6 h-6" />
+            <h4 class="font-bold uppercase text-sm">{t('fortress.feat1.title')}</h4>
+          </div>
+          <p class="text-xs text-brand-gray">{t('fortress.feat1.desc')}</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+             <Shield className="text-brand-blue w-6 h-6" />
+            <h4 class="font-bold uppercase text-sm">{t('fortress.feat2.title')}</h4>
+          </div>
+          <p class="text-xs text-brand-gray">{t('fortress.feat2.desc')}</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <Activity className="text-brand-blue w-6 h-6" />
+            <h4 class="font-bold uppercase text-sm">{t('fortress.feat3.title')}</h4>
+          </div>
+          <p class="text-xs text-brand-gray">{t('fortress.feat3.desc')}</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <Radio className="text-brand-blue w-6 h-6" />
+            <h4 class="font-bold uppercase text-sm">{t('fortress.feat4.title')}</h4>
+          </div>
+          <p class="text-xs text-brand-gray">{t('fortress.feat4.desc')}</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Side (Visual) -->
+    <div class="relative hidden lg:flex items-end justify-end">
+       <div class="absolute bottom-8 right-8 bg-black/80 backdrop-blur border border-white/10 p-4 rounded-lg">
+          <div class="text-[10px] text-brand-neon font-bold uppercase mb-1">{t('fortress.status')}</div>
+          <div class="text-sm font-bold">{t('fortress.latency')}</div>
+       </div>
+    </div>
+
+  </div>
+</section>

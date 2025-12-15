@@ -1,0 +1,86 @@
+---
+import { getLangFromUrl, useTranslations, languages } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Language Switcher Logic
+const currentPath = Astro.url.pathname;
+function getPathForLang(l: string) {
+  // If current path has a lang prefix, replace it. Otherwise prepend it.
+  // Note: 'es' is default/root.
+  
+  const segments = currentPath.split('/').filter(Boolean);
+  const supportedLangs = Object.keys(languages);
+  const firstSegment = segments[0];
+
+  let newSegments = [...segments];
+
+  if (supportedLangs.includes(firstSegment)) {
+    // We are in /en/ or /pt-br/
+    if (l === 'es') {
+      newSegments.shift(); // Remove 'en' or 'pt-br' to go to root
+    } else {
+      newSegments[0] = l; // Replace 'en' with 'pt-br' etc
+    }
+  } else {
+    // We are in root (es)
+    if (l !== 'es') {
+      newSegments.unshift(l); // Add 'en' or 'pt-br'
+    }
+  }
+
+  return '/' + newSegments.join('/');
+}
+---
+<header 
+  id="navbar" 
+  class="fixed top-0 w-full z-50 transition-all duration-300 rounded-b-[5px] bg-brand-bone/10 backdrop-blur-sm"
+>
+  <div class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
+    <a href={lang === 'es' ? '/' : `/${lang}`} class="hover:opacity-80 transition-opacity">
+      <img src="/logo.png" alt="nexxos" class="h-10 w-auto" />
+    </a>
+    
+    <nav class="hidden md:flex gap-8 text-[11px] font-bold text-brand-black uppercase tracking-widest">
+      <a href={lang === 'es' ? '/infrastructure' : `/${lang}/infrastructure`} class="hover:text-brand-blue transition-colors">{t('nav.infra')}</a>
+      <a href="#sustentabilidad" class="hover:text-brand-blue transition-colors">{t('nav.sus')}</a>
+      <a href="#specs" class="hover:text-brand-blue transition-colors">{t('nav.specs')}</a>
+      <a href="#estandar" class="hover:text-brand-blue transition-colors">{t('nav.standard')}</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+        <!-- Lang Switcher -->
+        <div class="flex gap-2 text-[10px] uppercase font-bold tracking-wider">
+            {Object.keys(languages).map((l) => (
+                <a 
+                    href={getPathForLang(l)} 
+                    class={`hover:text-brand-blue transition-colors ${lang === l ? 'text-brand-black underline decoration-2 underline-offset-4' : 'text-brand-gray'}`}
+                >
+                    {l === 'pt-br' ? 'PT' : l.toUpperCase()}
+                </a>
+            ))}
+        </div>
+
+        <a href={lang === 'es' ? '/contact' : `/${lang}/contact`} class="bg-brand-black text-white px-5 py-2 rounded-full font-bold text-[10px] tracking-widest uppercase hover:bg-brand-black/80 transition-colors">
+        {t('nav.invest')}
+        </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById('navbar');
+  
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        nav.classList.add('bg-white', 'shadow-sm');
+        nav.classList.remove('bg-brand-bone/10', 'backdrop-blur-sm');
+      } else {
+        nav.classList.remove('bg-white', 'shadow-sm');
+        nav.classList.add('bg-brand-bone/10', 'backdrop-blur-sm');
+      }
+    });
+  }
+</script>

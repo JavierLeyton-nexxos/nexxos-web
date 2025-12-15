@@ -1,0 +1,80 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="specs" class="py-24 px-6 max-w-[1280px] mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    
+    <!-- Left Column: Content -->
+    <div class="reveal">
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-black uppercase leading-none mb-1">{t('specs.title.1')} <span class="text-brand-gray">{t('specs.title.2')}</span></h2>
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-black uppercase leading-none mb-6">{t('specs.title.3')}</h2>
+      
+      <p class="text-brand-gray mb-12 max-w-md">
+        {t('specs.desc')}
+      </p>
+
+      <div class="space-y-8">
+        <!-- Spec Item -->
+        <div class="border-t border-brand-black/10 pt-4 grid grid-cols-2 gap-4">
+             <div>
+                <div class="text-[10px] font-bold tracking-widest uppercase text-brand-gray mb-1">{t('specs.item1.label')}</div>
+                <div class="text-3xl font-bold text-brand-black">Up to 120kW</div>
+             </div>
+             <div class="flex items-end pb-1 text-sm text-brand-gray">{t('specs.item1.sub')}</div>
+        </div>
+
+        <!-- Spec Item -->
+        <div class="border-t border-brand-black/10 pt-4 grid grid-cols-2 gap-4">
+             <div>
+                <div class="text-[10px] font-bold tracking-widest uppercase text-brand-gray mb-1">{t('specs.item2.label')}</div>
+                <div class="text-3xl font-bold text-brand-black">800 Gb/s</div>
+             </div>
+             <div class="flex items-end pb-1 text-sm text-brand-gray">{t('specs.item2.sub')}</div>
+        </div>
+
+        <!-- Spec Item -->
+        <div class="border-t border-brand-black/10 pt-4 grid grid-cols-2 gap-4">
+             <div>
+                <div class="text-[10px] font-bold tracking-widest uppercase text-brand-gray mb-1">{t('specs.item3.label')}</div>
+                <div class="text-3xl font-bold text-brand-black">25 kN/m²</div>
+             </div>
+             <div class="flex items-end pb-1 text-sm text-brand-gray">{t('specs.item3.sub')}</div>
+        </div>
+
+        <!-- Spec Item -->
+        <div class="border-t border-brand-black/10 pt-4 grid grid-cols-2 gap-4">
+             <div>
+                <div class="text-[10px] font-bold tracking-widest uppercase text-brand-gray mb-1">{t('specs.item4.label')}</div>
+                <div class="text-3xl font-bold text-brand-black">N+1</div>
+             </div>
+             <div class="flex items-end pb-1 text-sm text-brand-gray">{t('specs.item4.sub')}</div>
+        </div>
+
+      </div>
+
+      <!-- Certifications -->
+      <div class="mt-12 flex gap-4">
+        <div class="border border-brand-black/20 rounded px-2 py-1 text-[10px] uppercase font-bold text-brand-black/70">Tier III Design</div>
+        <div class="border border-brand-black/20 rounded px-2 py-1 text-[10px] uppercase font-bold text-brand-black/70">ISO 27001</div>
+        <div class="border border-brand-black/20 rounded px-2 py-1 text-[10px] uppercase font-bold text-brand-black/70">LEED Gold</div>
+      </div>
+    </div>
+
+    <!-- Right Column: Image -->
+    <div class="w-full h-full min-h-[500px] rounded-bento overflow-hidden relative shadow-lg">
+      <div class="absolute inset-0 bg-brand-black/5 z-10 mix-blend-multiply"></div>
+      <img 
+        src="https://images.unsplash.com/photo-1558494949-ef526b0042a0?q=80&w=2695&auto=format&fit=crop" 
+        alt="Interior de centro de datos con pasillos de servidores de alta densidad" 
+        class="w-full h-full object-cover grayscale contrast-125"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+  </div>
+</section>

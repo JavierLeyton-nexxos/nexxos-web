@@ -1,0 +1,42 @@
+@import "@fontsource/open-sans";
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+@theme {
+    /* We are using tailwind.config.mjs, so we might not strictly need this block unless we want to override things here too. 
+     But for v4, if we use a config file, we usually don't need @theme here unless we are defining variables. */
+}
+
+@layer base {
+    body {
+        @apply bg-brand-bone text-brand-black font-sans;
+    }
+}
+
+@layer utilities {
+    .reveal {
+        @apply opacity-0 translate-y-8 transition-all duration-1000 ease-out;
+        will-change: opacity, transform;
+    }
+
+    .reveal.active {
+        @apply opacity-100 translate-y-0;
+    }
+
+    /* Stagger delays */
+    .delay-100 {
+        transition-delay: 100ms;
+    }
+
+    .delay-200 {
+        transition-delay: 200ms;
+    }
+
+    .delay-300 {
+        transition-delay: 300ms;
+    }
+
+    .delay-500 {
+        transition-delay: 500ms;
+    }
+}
