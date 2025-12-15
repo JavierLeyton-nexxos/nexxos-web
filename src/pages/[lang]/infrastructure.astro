@@ -1,0 +1,189 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+import Layout from '../../layouts/Layout.astro'
+import Navbar from '../../components/Navbar.astro'
+import ActionFooter from '../../components/ActionFooter.astro'
+import { Zap, Droplets, Network } from 'lucide-react'
+import { Image } from 'astro:assets'
+
+export function getStaticPaths() {
+	return [{ params: { lang: 'en' } }, { params: { lang: 'pt-br' } }]
+}
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<Layout title={`Infrastructure | nexxos AI Hub`}>
+	<Navbar />
+
+	<main class='min-h-screen pt-20 bg-brand-black text-white'>
+		<!-- Hero Section -->
+		<section
+			class='relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden'
+		>
+			<div class='absolute inset-0 z-0'>
+				<div class='absolute inset-0 bg-brand-black/80 z-10'></div>
+				<!-- Mock Server Image -->
+				<Image
+					src='https://images.unsplash.com/photo-1558494949-ef526b0042a0?q=80&w=2695&auto=format&fit=crop'
+					alt='Datacenter Infrastructure'
+					class='w-full h-full object-cover opacity-50 grayscale'
+					inferSize={true}
+				/>
+			</div>
+
+			<div class='relative z-20 text-center px-6 max-w-4xl mx-auto'>
+				<span
+					class='inline-block bg-brand-neon text-brand-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6'
+				>
+					{t('infra.subtitle')}
+				</span>
+				<h1
+					class='text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none mb-6'
+				>
+					{t('infra.title')}
+				</h1>
+				<p class='text-xl text-brand-gray max-w-2xl mx-auto'>
+					{t('infra.desc')}
+				</p>
+			</div>
+		</section>
+
+		<!-- Details Grid -->
+		<section class='py-24 px-6 max-w-[1280px] mx-auto'>
+			<div class='grid grid-cols-1 md:grid-cols-3 gap-8'>
+				<!-- Power -->
+				<div
+					class='bg-white/5 border border-white/10 p-8 rounded-bento hover:border-brand-neon/50 transition-colors group'
+				>
+					<div
+						class='w-12 h-12 rounded-full bg-brand-neon flex items-center justify-center mb-8 text-brand-black group-hover:scale-110 transition-transform'
+					>
+						<Zap className='w-6 h-6' />
+					</div>
+					<h3 class='text-2xl font-bold uppercase mb-4'>
+						{t('infra.power.title')}
+					</h3>
+					<p
+						class='text-brand-gray text-sm mb-8 leading-relaxed min-h-[80px]'
+					>
+						{t('infra.power.desc')}
+					</p>
+					<div
+						class='grid grid-cols-2 gap-4 border-t border-white/10 pt-6'
+					>
+						<div>
+							<div class='text-3xl font-bold text-brand-neon'>
+								{t('infra.power.stat1')}
+							</div>
+							<div
+								class='text-[10px] uppercase tracking-widest text-brand-gray'
+							>
+								{t('infra.power.stat1.label')}
+							</div>
+						</div>
+						<div>
+							<div class='text-3xl font-bold text-white'>
+								{t('infra.power.stat2')}
+							</div>
+							<div
+								class='text-[10px] uppercase tracking-widest text-brand-gray'
+							>
+								{t('infra.power.stat2.label')}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Cooling -->
+				<div
+					class='bg-white/5 border border-white/10 p-8 rounded-bento hover:border-brand-blue/50 transition-colors group'
+				>
+					<div
+						class='w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center mb-8 text-white group-hover:scale-110 transition-transform'
+					>
+						<Droplets className='w-6 h-6' />
+					</div>
+					<h3 class='text-2xl font-bold uppercase mb-4'>
+						{t('infra.cooling.title')}
+					</h3>
+					<p
+						class='text-brand-gray text-sm mb-8 leading-relaxed min-h-[80px]'
+					>
+						{t('infra.cooling.desc')}
+					</p>
+					<div
+						class='grid grid-cols-2 gap-4 border-t border-white/10 pt-6'
+					>
+						<div>
+							<div class='text-3xl font-bold text-brand-blue'>
+								{t('infra.cooling.stat1')}
+							</div>
+							<div
+								class='text-[10px] uppercase tracking-widest text-brand-gray'
+							>
+								{t('infra.cooling.stat1.label')}
+							</div>
+						</div>
+						<div>
+							<div class='text-3xl font-bold text-white'>
+								{t('infra.cooling.stat2')}
+							</div>
+							<div
+								class='text-[10px] uppercase tracking-widest text-brand-gray'
+							>
+								{t('infra.cooling.stat2.label')}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Connectivity -->
+				<div
+					class='bg-white/5 border border-white/10 p-8 rounded-bento hover:border-brand-bone/50 transition-colors group'
+				>
+					<div
+						class='w-12 h-12 rounded-full bg-brand-bone flex items-center justify-center mb-8 text-brand-black group-hover:scale-110 transition-transform'
+					>
+						<Network className='w-6 h-6' />
+					</div>
+					<h3 class='text-2xl font-bold uppercase mb-4'>
+						{t('infra.connect.title')}
+					</h3>
+					<p
+						class='text-brand-gray text-sm mb-8 leading-relaxed min-h-[80px]'
+					>
+						{t('infra.connect.desc')}
+					</p>
+					<div
+						class='grid grid-cols-2 gap-4 border-t border-white/10 pt-6'
+					>
+						<div>
+							<div class='text-3xl font-bold text-white'>
+								{t('infra.connect.stat1')}
+							</div>
+							<div
+								class='text-[10px] uppercase tracking-widest text-brand-gray'
+							>
+								{t('infra.connect.stat1.label')}
+							</div>
+						</div>
+						<div>
+							<div class='text-3xl font-bold text-white'>
+								{t('infra.connect.stat2')}
+							</div>
+							<div
+								class='text-[10px] uppercase tracking-widest text-brand-gray'
+							>
+								{t('infra.connect.stat2.label')}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<ActionFooter />
+</Layout>

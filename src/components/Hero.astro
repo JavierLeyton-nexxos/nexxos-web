@@ -1,0 +1,74 @@
+---
+import { ChevronRight } from 'lucide-react'
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import { Image } from 'astro:assets'
+import heroImage from '../assets/aerea_frontal_campus.png'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<section
+	class='relative w-full h-[85vh] min-h-[600px] flex items-center justify-start overflow-hidden bg-brand-bone'
+>
+	<!-- Background Image with LCP Optimization -->
+	<div class='absolute inset-0 z-0'>
+		<div
+			class='absolute inset-0 bg-gradient-to-r from-brand-bone/90 via-brand-bone/50 to-transparent z-10'
+		>
+		</div>
+		<Image
+			src={heroImage}
+			alt='Edificio moderno de nexxos AI Factory'
+			class='w-full h-full object-cover grayscale-[20%] opacity-60'
+			height={1080}
+			width={1920}
+			inferSize={true}
+			loading='eager'
+			fetchpriority='high'
+		/>
+	</div>
+
+	<div class='relative z-20 max-w-[1280px] mx-auto px-6 w-full'>
+		<!-- Tag -->
+		<div
+			class='reveal inline-block bg-brand-neon text-brand-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6'
+		>
+			{t('hero.tag')}
+		</div>
+
+		<!-- H1 -->
+		<h1
+			class='reveal delay-100 text-5xl md:text-7xl font-bold text-brand-black leading-[0.95] tracking-tighter mb-8 max-w-3xl uppercase'
+		>
+			{t('hero.title.pre')}
+			<span class='text-brand-blue'>{t('hero.title.highlight')}</span>
+			{t('hero.title.post')}
+		</h1>
+
+		<!-- Subtext -->
+		<p
+			class='reveal delay-200 text-lg md:text-xl text-brand-black/80 max-w-xl leading-relaxed mb-10'
+		>
+			{t('hero.desc')}
+		</p>
+
+		<!-- Buttons -->
+		<div class='reveal delay-300 flex flex-col sm:flex-row gap-4'>
+			<a
+				href={lang === 'es' ? '/contact' : `/${lang}/contact`}
+				class='flex items-center justify-center gap-2 bg-brand-black text-white px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform'
+			>
+				{t('hero.cta')}
+				<ChevronRight className='w-4 h-4' />
+			</a>
+
+			<a
+				href='#specs'
+				class='flex items-center justify-center gap-2 border border-brand-black/30 text-brand-black px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:bg-brand-black hover:text-white transition-colors'
+			>
+				Ver Specs
+			</a>
+		</div>
+	</div>
+</section>

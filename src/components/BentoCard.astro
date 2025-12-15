@@ -1,0 +1,20 @@
+---
+interface Props {
+  title?: string;
+  class?: string;
+  id?: string;
+}
+
+const { title, class: className, id } = Astro.props;
+---
+
+<article
+  id={id}
+  class:list={[
+    "bg-brand-bone border border-brand-black/5 shadow-sm rounded-bento p-6 flex flex-col relative overflow-hidden",
+    className,
+  ]}
+>
+  {title && <h2 class="text-2xl font-bold mb-4">{title}</h2>}
+  <slot />
+</article>
