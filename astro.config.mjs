@@ -3,6 +3,8 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import partytown from '@astrojs/partytown';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.nexxos.ai', // Placeholder URL
@@ -23,5 +25,5 @@ export default defineConfig({
     config: {
       forward: ['dataLayer.push'],
     }
-  })]
+  }), sitemap()]
 });
