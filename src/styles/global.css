@@ -1,6 +1,30 @@
-@import "@fontsource/open-sans";
 @import "tailwindcss";
 @config "../../tailwind.config.mjs";
+
+/* Manual Font Definition for CLS Optimization */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(@fontsource/open-sans/files/open-sans-latin-400-normal.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(@fontsource/open-sans/files/open-sans-latin-500-normal.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(@fontsource/open-sans/files/open-sans-latin-700-normal.woff2) format('woff2');
+}
 
 @layer base {
     body {

@@ -6,6 +6,12 @@ import logo from '../assets/logo.png'
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
+interface Props {
+	theme?: 'transparent' | 'solid'
+}
+
+const { theme = 'transparent' } = Astro.props
+
 // Language Switcher Logic
 const currentPath = Astro.url.pathname
 function getPathForLang(l: string) {
@@ -38,7 +44,8 @@ function getPathForLang(l: string) {
 
 <header
 	id='navbar'
-	class='fixed top-0 w-full z-50 transition-all duration-300 rounded-b-[5px] bg-brand-bone/10 backdrop-blur-sm'
+	data-theme={theme}
+	class={`fixed top-0 w-full z-50 transition-all duration-300 rounded-b-[5px] ${theme === 'solid' ? 'bg-white shadow-sm' : 'bg-brand-bone/10 backdrop-blur-sm'}`}
 >
 	<div
 		class='max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between'
@@ -47,7 +54,13 @@ function getPathForLang(l: string) {
 			href={lang === 'es' ? '/' : `/${lang}`}
 			class='hover:opacity-80 transition-opacity'
 		>
-			<Image src={logo} alt='nexxos' class='h-8 w-auto' />
+			<Image
+				src={logo}
+				alt='nexxos'
+				class='h-8 w-auto'
+				widths={[300, 600]}
+				sizes='(max-width: 768px) 100vw, 300px'
+			/>
 		</a>
 
 		<nav
@@ -87,7 +100,7 @@ function getPathForLang(l: string) {
 <script>
 	const nav = document.getElementById('navbar')
 
-	if (nav) {
+	if (nav && nav.dataset.theme !== 'solid') {
 		window.addEventListener('scroll', () => {
 			if (window.scrollY > 10) {
 				nav.classList.add('bg-white', 'shadow-sm')

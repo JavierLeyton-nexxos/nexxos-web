@@ -19,6 +19,8 @@ const t = useTranslations(lang)
 			alt='Arquitectura moderna de concreto'
 			class='w-full h-full object-cover grayscale'
 			inferSize={true}
+			widths={[640, 1024, 1500]}
+			sizes='(max-width: 1024px) 100vw, 66vw'
 			loading='lazy'
 			decoding='async'
 		/>
@@ -57,9 +59,9 @@ const t = useTranslations(lang)
 				<div>
 					<div class='flex items-center gap-3 mb-2'>
 						<Fingerprint className='text-brand-blue w-6 h-6' />
-						<h4 class='font-bold uppercase text-sm'>
+						<h3 class='font-bold uppercase text-sm'>
 							{t('fortress.feat1.title')}
-						</h4>
+						</h3>
 					</div>
 					<p class='text-xs text-brand-gray'>{t('fortress.feat1.desc')}</p>
 				</div>
@@ -68,9 +70,9 @@ const t = useTranslations(lang)
 				<div>
 					<div class='flex items-center gap-3 mb-2'>
 						<Shield className='text-brand-blue w-6 h-6' />
-						<h4 class='font-bold uppercase text-sm'>
+						<h3 class='font-bold uppercase text-sm'>
 							{t('fortress.feat2.title')}
-						</h4>
+						</h3>
 					</div>
 					<p class='text-xs text-brand-gray'>{t('fortress.feat2.desc')}</p>
 				</div>
@@ -79,9 +81,9 @@ const t = useTranslations(lang)
 				<div>
 					<div class='flex items-center gap-3 mb-2'>
 						<Activity className='text-brand-blue w-6 h-6' />
-						<h4 class='font-bold uppercase text-sm'>
+						<h3 class='font-bold uppercase text-sm'>
 							{t('fortress.feat3.title')}
-						</h4>
+						</h3>
 					</div>
 					<p class='text-xs text-brand-gray'>{t('fortress.feat3.desc')}</p>
 				</div>
@@ -90,9 +92,9 @@ const t = useTranslations(lang)
 				<div>
 					<div class='flex items-center gap-3 mb-2'>
 						<Radio className='text-brand-blue w-6 h-6' />
-						<h4 class='font-bold uppercase text-sm'>
+						<h3 class='font-bold uppercase text-sm'>
 							{t('fortress.feat4.title')}
-						</h4>
+						</h3>
 					</div>
 					<p class='text-xs text-brand-gray'>{t('fortress.feat4.desc')}</p>
 				</div>

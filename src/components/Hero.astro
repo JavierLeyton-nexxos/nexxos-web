@@ -21,11 +21,13 @@ const t = useTranslations(lang)
 			src={heroImage}
 			alt='Edificio moderno de nexxos AI Factory'
 			class='w-full h-full object-cover grayscale-[20%] opacity-60'
-			height={1080}
-			width={1920}
 			inferSize={true}
+			widths={[640, 1024, 1536, 1920]}
+			sizes='100vw'
 			loading='eager'
 			fetchpriority='high'
+			format='avif'
+			quality={60}
 		/>
 	</div>
 
