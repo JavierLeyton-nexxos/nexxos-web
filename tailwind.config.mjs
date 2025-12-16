@@ -8,7 +8,7 @@ export default {
         'brand-black': '#0d0e14',
         'brand-neon': '#ecfc39',
         'brand-blue': '#005dff',
-        'brand-gray': '#b0b1b6',
+        'brand-gray': '#4a4b52',
       },
       borderRadius: {
         bento: '1.5rem', // 24px
