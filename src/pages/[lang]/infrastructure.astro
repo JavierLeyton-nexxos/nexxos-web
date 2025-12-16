@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar.astro'
 import ActionFooter from '../../components/ActionFooter.astro'
 import { Zap, Droplets, Network } from 'lucide-react'
 import { Image } from 'astro:assets'
+import lateralCampus from '../../assets/lateral_campus.png'
 
 export function getStaticPaths() {
 	return [{ params: { lang: 'en' } }, { params: { lang: 'pt-br' } }]
@@ -26,7 +27,7 @@ const t = useTranslations(lang)
 				<div class='absolute inset-0 bg-brand-black/80 z-10'></div>
 				<!-- Mock Server Image -->
 				<Image
-					src='https://images.unsplash.com/photo-1558494949-ef526b0042a0?q=80&w=2695&auto=format&fit=crop'
+					src={lateralCampus}
 					alt='Datacenter Infrastructure'
 					class='w-full h-full object-cover opacity-50 grayscale'
 					inferSize={true}
