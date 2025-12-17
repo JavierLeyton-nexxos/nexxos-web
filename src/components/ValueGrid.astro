@@ -1,78 +1,121 @@
 ---
-import { Zap, Droplets, Wind, Timer } from 'lucide-react';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { Zap, Droplets, Wind, Timer } from 'lucide-react'
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
-<section class="py-24 px-6 max-w-[1280px] mx-auto">
-  <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-    <h2 class="text-4xl md:text-5xl font-bold text-brand-black uppercase tracking-tight">{t('grid.title')}</h2>
-    <div class="text-xs font-mono text-brand-gray tracking-widest uppercase mt-4 md:mt-0">
-      {t('grid.subtitle')}
-    </div>
-  </div>
+<section class='py-24 px-6 max-w-[1280px] mx-auto'>
+	<div class='flex flex-col md:flex-row justify-between items-end mb-12'>
+		<h2
+			class='text-4xl md:text-5xl font-bold text-brand-black uppercase tracking-tight'
+		>
+			{t('grid.title')}
+		</h2>
+		<div
+			class='text-xs font-mono text-brand-gray tracking-widest uppercase mt-4 md:mt-0'
+		>
+			{t('grid.subtitle')}
+		</div>
+	</div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    
-    <!-- Card 1: NVIDIA NATIVE (Black) -->
-    <div class="reveal bg-brand-black text-white p-8 rounded-bento min-h-[320px] flex flex-col justify-between relative overflow-hidden group">
-      <div class="absolute top-8 left-8 w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center">
-        <Zap className="w-5 h-5 text-white" />
-      </div>
-      <div class="relative z-10 mt-auto">
-        <h3 class="text-2xl font-bold uppercase mb-2" set:html={t('grid.card1.title').replace('NVIDIA', 'NVIDIA<br/>')} />
-        <p class="text-brand-gray text-sm leading-relaxed max-w-xs">
-          {t('grid.card1.desc')}
-        </p>
-      </div>
-    </div>
+	<div class='grid grid-cols-1 md:grid-cols-2 gap-6'>
+		<!-- Card 1: Residencia de Datos (Black) -->
+		<div
+			class='reveal bg-brand-black text-white p-8 rounded-bento min-h-[320px] flex flex-col justify-between relative overflow-hidden group'
+		>
+			<div
+				class='absolute top-8 left-8 w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center'
+			>
+				<Zap className='w-5 h-5 text-white' />
+			</div>
+			<div class='relative z-10 mt-auto'>
+				<h3
+					class='text-2xl font-bold uppercase mb-2'
+					set:html={t('grid.card1.title').replace(' de ', ' de<br/>')}
+				/>
+				<p class='text-brand-gray text-sm leading-relaxed max-w-xs'>
+					{t('grid.card1.desc')}
+				</p>
+			</div>
+		</div>
 
-    <!-- Card 2: Zero Water Waste (Bone/Light) -->
-    <div class="reveal delay-100 bg-white border border-brand-black/5 p-8 rounded-bento min-h-[320px] flex flex-col justify-between relative overflow-hidden group">
-       <div class="absolute top-8 left-8 w-10 h-10 bg-brand-blue/10 rounded-full flex items-center justify-center">
-        <Droplets className="w-5 h-5 text-brand-blue" />
-      </div>
-      <div class="relative z-10 mt-auto">
-        <h3 class="text-2xl font-bold uppercase mb-2 text-brand-black" set:html={t('grid.card2.title').replace('Water', 'Water<br/>')} />
-        <p class="text-brand-black/60 text-sm leading-relaxed max-w-xs">
-          {t('grid.card2.desc')}
-        </p>
-      </div>
-      <!-- Soft gradient background effect -->
-      <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-brand-blue/5 to-transparent rounded-bl-full pointer-events-none"></div>
-    </div>
+		<!-- Card 2: Zona Franca Tecnológica (White) -->
+		<div
+			class='reveal delay-100 bg-white border border-brand-black/5 p-8 rounded-bento min-h-[320px] flex flex-col justify-between relative overflow-hidden group'
+		>
+			<div
+				class='absolute top-8 left-8 w-10 h-10 bg-brand-blue/10 rounded-full flex items-center justify-center'
+			>
+				<Droplets className='w-5 h-5 text-brand-blue' />
+			</div>
+			<div class='relative z-10 mt-auto'>
+				<h3
+					class='text-2xl font-bold uppercase mb-2 text-brand-black'
+					set:html={t('grid.card2.title').replace(
+						' Franca ',
+						' Franca<br/>',
+					)}
+				/>
+				<p class='text-brand-black/60 text-sm leading-relaxed max-w-xs'>
+					{t('grid.card2.desc')}
+				</p>
+			</div>
+			<!-- Soft gradient background effect -->
+			<div
+				class='absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-brand-blue/5 to-transparent rounded-bl-full pointer-events-none'
+			>
+			</div>
+		</div>
 
-    <!-- Card 3: 98% Renewable (Neon Yellow) -->
-    <div class="reveal delay-200 bg-brand-neon p-8 rounded-bento min-h-[320px] flex flex-col justify-between relative overflow-hidden group text-brand-black">
-      <div class="absolute top-8 left-8 w-10 h-10 bg-brand-black/10 rounded-full flex items-center justify-center">
-        <Wind className="w-5 h-5 text-brand-black" />
-      </div>
-      <div class="absolute top-8 right-8 text-[10px] font-bold tracking-widest uppercase border border-brand-black/20 px-2 py-1 rounded-full">
-        {t('grid.card3.tag')}
-      </div>
-      <div class="relative z-10 mt-auto">
-        <h3 class="text-6xl font-bold uppercase mb-1 leading-none">98%</h3>
-        <div class="text-xl font-bold uppercase mb-4">{t('grid.card3.title')}</div>
-        <p class="text-brand-black/80 text-sm leading-relaxed max-w-xs font-medium">
-          {t('grid.card3.desc')}
-        </p>
-      </div>
-    </div>
+		<!-- Card 3: Independencia (Neon Yellow) -->
+		<div
+			class='reveal delay-200 bg-brand-neon p-8 rounded-bento min-h-[320px] flex flex-col justify-between relative overflow-hidden group text-brand-black'
+		>
+			<div
+				class='absolute top-8 left-8 w-10 h-10 bg-brand-black/10 rounded-full flex items-center justify-center'
+			>
+				<Wind className='w-5 h-5 text-brand-black' />
+			</div>
+			<div
+				class='absolute top-8 right-8 text-[10px] font-bold tracking-widest uppercase border border-brand-black/20 px-2 py-1 rounded-full'
+			>
+				{t('grid.card3.tag')}
+			</div>
+			<div class='relative z-10 mt-auto'>
+				<h3 class='text-2xl font-bold uppercase mb-4'>
+					{t('grid.card3.title')}
+				</h3>
+				<p
+					class='text-brand-black/80 text-sm leading-relaxed max-w-xs font-medium'
+				>
+					{t('grid.card3.desc')}
+				</p>
+			</div>
+		</div>
 
-    <!-- Card 4: Fast-Track Delivery (White) -->
-    <div class="reveal delay-300 bg-white border border-brand-black/5 p-8 rounded-bento min-h-[320px] flex flex-col justify-between relative overflow-hidden group">
-      <div class="absolute top-8 left-8 w-10 h-10 bg-brand-bone rounded-full flex items-center justify-center">
-        <Timer className="w-5 h-5 text-brand-black" />
-      </div>
-      <div class="relative z-10 mt-auto">
-        <h3 class="text-2xl font-bold uppercase mb-2 text-brand-black" set:html={t('grid.card4.title').replace('Fast-Track', 'Fast-Track<br/>')} />
-        <p class="text-brand-black/60 text-sm leading-relaxed max-w-xs">
-          {t('grid.card4.desc')}
-        </p>
-      </div>
-    </div>
-
-  </div>
+		<!-- Card 4: Fast-Track Delivery (White) -->
+		<div
+			class='reveal delay-300 bg-white border border-brand-black/5 p-8 rounded-bento min-h-[320px] flex flex-col justify-between relative overflow-hidden group'
+		>
+			<div
+				class='absolute top-8 left-8 w-10 h-10 bg-brand-bone rounded-full flex items-center justify-center'
+			>
+				<Timer className='w-5 h-5 text-brand-black' />
+			</div>
+			<div class='relative z-10 mt-auto'>
+				<h3
+					class='text-2xl font-bold uppercase mb-2 text-brand-black'
+					set:html={t('grid.card4.title').replace(
+						'Fast-Track',
+						'Fast-Track<br/>',
+					)}
+				/>
+				<p class='text-brand-black/60 text-sm leading-relaxed max-w-xs'>
+					{t('grid.card4.desc')}
+				</p>
+			</div>
+		</div>
+	</div>
 </section>
