@@ -7,8 +7,8 @@ const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
 
-<section id='specs' class='py-24 px-6 max-w-[1280px] mx-auto'>
-	<div class='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
+<section id='specs' class='py-12 md:py-24 px-6 max-w-[1280px] mx-auto'>
+	<div class='grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center'>
 		<!-- Left Column: Content -->
 		<div class='reveal'>
 			<h2
@@ -125,7 +125,7 @@ const t = useTranslations(lang)
 
 		<!-- Right Column: Image -->
 		<div
-			class='w-full h-full min-h-[500px] rounded-bento overflow-hidden relative shadow-lg'
+			class='w-full h-full min-h-[300px] md:min-h-[500px] rounded-bento overflow-hidden relative shadow-lg'
 		>
 			<div class='absolute inset-0 bg-brand-black/5 z-10 mix-blend-multiply'>
 			</div>

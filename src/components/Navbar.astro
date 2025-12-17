@@ -1,4 +1,5 @@
 ---
+import { Menu, X } from 'lucide-react'
 import { getLangFromUrl, useTranslations, languages } from '../i18n/utils'
 import { Image } from 'astro:assets'
 import logo from '../assets/logo.png'
@@ -52,7 +53,7 @@ function getPathForLang(l: string) {
 	>
 		<a
 			href={lang === 'es' ? '/' : `/${lang}`}
-			class='hover:opacity-80 transition-opacity'
+			class='hover:opacity-80 transition-opacity z-50 relative'
 		>
 			<Image
 				src={logo}
@@ -72,7 +73,8 @@ function getPathForLang(l: string) {
 			>
 		</nav>
 
-		<div class='flex items-center gap-4'>
+		<!-- Desktop Actions -->
+		<div class='hidden md:flex items-center gap-4'>
 			<!-- Lang Switcher -->
 			<div class='flex gap-2 text-[10px] uppercase font-bold tracking-wider'>
 				{
@@ -94,11 +96,73 @@ function getPathForLang(l: string) {
 				{t('nav.invest')}
 			</a>
 		</div>
+
+		<!-- Mobile Action Group -->
+		<div class='flex md:hidden items-center gap-4'>
+			<!-- Mobile Lang Switcher (Visible next to toggler) -->
+			<div class='flex gap-2 text-[10px] uppercase font-bold tracking-wider'>
+				{
+					Object.keys(languages).map((l) => (
+						<a
+							href={getPathForLang(l)}
+							class={`p-2 hover:text-brand-blue transition-colors ${lang === l ? 'text-brand-black underline decoration-2 underline-offset-4' : 'text-brand-gray'}`}
+						>
+							{l === 'pt-br' ? 'PT' : l.toUpperCase()}
+						</a>
+					))
+				}
+			</div>
+
+			<!-- Mobile Menu Toggle -->
+			<button
+				id='mobile-menu-toggle'
+				class='z-50 relative text-brand-black p-2'
+				aria-label='Toggle Menu'
+			>
+				<span id='menu-open-icon' class='block'>
+					<Menu className='w-6 h-6' />
+				</span>
+				<span id='menu-close-icon' class='hidden'>
+					<X className='w-6 h-6' />
+				</span>
+			</button>
+		</div>
+
+		<!-- Mobile Menu Overlay -->
+		<div
+			id='mobile-menu'
+			class='fixed top-20 left-0 right-0 bottom-0 bg-white z-40 flex-col items-center justify-center gap-8 hidden md:hidden'
+		>
+			<nav
+				class='flex flex-col items-center gap-8 text-xl font-bold uppercase tracking-widest'
+			>
+				<a
+					href={lang === 'es'
+						? '/infrastructure'
+						: `/${lang}/infrastructure`}
+					class='hover:text-brand-blue transition-colors'
+					>{t('nav.infra')}</a
+				>
+			</nav>
+
+			<div class='flex flex-col items-center gap-8'>
+				<a
+					href={lang === 'es' ? '/contact' : `/${lang}/contact`}
+					class='bg-brand-black text-white px-8 py-3 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-brand-black/80 transition-colors'
+				>
+					{t('nav.invest')}
+				</a>
+			</div>
+		</div>
 	</div>
 </header>
 
 <script>
 	const nav = document.getElementById('navbar')
+	const menuToggle = document.getElementById('mobile-menu-toggle')
+	const mobileMenu = document.getElementById('mobile-menu')
+	const openIcon = document.getElementById('menu-open-icon')
+	const closeIcon = document.getElementById('menu-close-icon')
 
 	if (nav && nav.dataset.theme !== 'solid') {
 		window.addEventListener('scroll', () => {
@@ -108,6 +172,38 @@ function getPathForLang(l: string) {
 			} else {
 				nav.classList.remove('bg-white', 'shadow-sm')
 				nav.classList.add('bg-brand-bone/10', 'backdrop-blur-sm')
+			}
+		})
+	}
+
+	// Mobile Menu Toggle Logic
+	if (menuToggle && mobileMenu && openIcon && closeIcon && nav) {
+		menuToggle.addEventListener('click', () => {
+			const isHidden = mobileMenu.classList.contains('hidden')
+
+			if (isHidden) {
+				// Open
+				mobileMenu.classList.remove('hidden')
+				mobileMenu.classList.add('flex')
+				openIcon.classList.add('hidden')
+				closeIcon.classList.remove('hidden')
+				nav.classList.add('bg-white') // Force solid bg
+				nav.classList.remove('bg-brand-bone/10', 'backdrop-blur-sm')
+				document.body.style.overflow = 'hidden' // Prevent scrolling
+			} else {
+				// Close
+				mobileMenu.classList.add('hidden')
+				mobileMenu.classList.remove('flex')
+				openIcon.classList.remove('hidden')
+				closeIcon.classList.add('hidden')
+
+				// Restore bg if at top
+				if (window.scrollY <= 10 && nav.dataset.theme !== 'solid') {
+					nav.classList.remove('bg-white')
+					nav.classList.add('bg-brand-bone/10', 'backdrop-blur-sm')
+				}
+
+				document.body.style.overflow = '' // Restore scrolling
 			}
 		})
 	}

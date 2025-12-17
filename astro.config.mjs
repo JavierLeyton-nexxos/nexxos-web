@@ -25,5 +25,8 @@ export default defineConfig({
     config: {
       forward: ['dataLayer.push'],
     }
-  }), sitemap()]
+  }), sitemap()],
+  build: {
+    inlineStylesheets: 'always'
+  }
 });
