@@ -6,12 +6,14 @@ interface Props {
 	title?: string
 	description?: string
 	image?: string
+	structuredData?: object
 }
 
 const {
 	title = 'nexxos AI Hub | Sovereign Hyperscale Infrastructure LATAM',
 	description = 'The first AI Factory in LATAM designed for NVIDIA Blackwell. 150 MW of renewable power, Liquid Cooling, and Sovereign Compute in Uruguay Free Zone.',
 	image = '/og-image.jpg',
+	structuredData,
 } = Astro.props
 
 const lang = Astro.currentLocale || 'es'
@@ -49,6 +51,15 @@ const lang = Astro.currentLocale || 'es'
 		<meta property='twitter:image' content={image} />
 
 		<title>{title}</title>
+
+		{
+			structuredData && (
+				<script
+					type='application/ld+json'
+					set:html={JSON.stringify(structuredData)}
+				/>
+			)
+		}
 	</head>
 	<body
 		class='bg-brand-bone text-brand-black min-h-screen selection:bg-brand-neon selection:text-brand-black'
