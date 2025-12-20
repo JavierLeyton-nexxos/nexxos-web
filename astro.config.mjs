@@ -16,7 +16,7 @@ export default defineConfig({
     }
   },
   image: {
-    domains: ['images.unsplash.com'],
+    domains: ['images.unsplash.com', 'payload.wedit.tech'],
   },
   vite: {
     plugins: [tailwindcss()]

@@ -1,0 +1,140 @@
+---
+import Layout from '../../../layouts/Layout.astro'
+import Navbar from '../../../components/Navbar.astro'
+import ActionFooter from '../../../components/ActionFooter.astro'
+import ArticleCard from '../../../components/ArticleCard.astro'
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils'
+import { ArrowUpRight } from 'lucide-react'
+
+export function getStaticPaths() {
+	return [{ params: { lang: 'en' } }, { params: { lang: 'pt-br' } }]
+}
+
+const { lang } = Astro.params
+const t = useTranslations(lang as any)
+
+const PAYLOAD_URL = import.meta.env.PAYLOAD_URL || 'https://payload.wedit.tech'
+
+const res = await fetch(`${PAYLOAD_URL}/api/posts?where[tenant.id][equals]=2`)
+const posts = await res.json()
+
+const docs = posts?.docs || []
+
+// Sort posts by publishedAt in descending order
+docs.sort(
+	(a: any, b: any) =>
+		new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+)
+
+const titles = {
+	en: 'Our Blog',
+	'pt-br': 'Nosso Blog',
+}
+
+const descriptions = {
+	en: 'Explore the latest news and articles about sovereign AI infrastructure in Latin America.',
+	'pt-br':
+		'Explore as últimas notícias e artigos sobre infraestrutura de IA soberana na América Latina.',
+}
+
+const title = titles[lang as keyof typeof titles] || titles.en
+const description =
+	descriptions[lang as keyof typeof descriptions] || descriptions.en
+---
+
+<Layout title={`nexxos - ${title}`} description={description}>
+	<Navbar />
+
+	<main class='pt-32 pb-0 bg-brand-bone min-h-screen'>
+		<div class='max-w-[1400px] mx-auto px-6'>
+			<!-- Header -->
+			<div class='mb-16 md:mb-24'>
+				<div
+					class='reveal inline-block bg-brand-neon text-brand-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-[0.2em] mb-8'
+				>
+					Blog
+				</div>
+				<h1
+					class='reveal delay-100 text-5xl md:text-8xl font-bold text-brand-black leading-[0.9] tracking-tighter uppercase mb-8'
+				>
+					{lang === 'en' ? 'Our' : 'Nosso'}
+					<br /><span class='text-brand-blue'>Blog</span>
+				</h1>
+			</div>
+
+			<!-- Grid -->
+			<div
+				class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-16 mb-24'
+			>
+				{docs.map((post: any) => <ArticleCard post={post} />)}
+			</div>
+
+			{
+				docs.length === 0 && (
+					<div class='text-center py-40 bg-white/50 rounded-2xl border border-dashed border-brand-black/10 mb-24'>
+						<p class='text-brand-gray uppercase font-bold tracking-widest'>
+							{lang === 'en'
+								? 'No articles found.'
+								: 'Nenhum artigo encontrado.'}
+						</p>
+					</div>
+				)
+			}
+		</div>
+
+		<!-- CTA Section -->
+		<section class='border-t border-brand-black/10 mt-auto'>
+			<div class='max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2'>
+				<!-- Schedule a Demo -->
+				<a
+					href={lang === 'es' ? '/contact' : `/${lang}/contact`}
+					class='group p-12 md:p-20 border-b md:border-b-0 md:border-r border-brand-black/10 hover:bg-brand-neon transition-colors duration-500 text-brand-black'
+				>
+					<div class='flex justify-between items-start mb-12'>
+						<h2
+							class='text-4xl md:text-6xl font-bold uppercase leading-none tracking-tighter'
+						>
+							{t('blog.cta.demo.title')}
+						</h2>
+						<div
+							class='w-12 h-12 md:w-16 md:h-16 border border-brand-black rounded-full flex items-center justify-center group-hover:bg-brand-black group-hover:text-brand-neon transition-all'
+						>
+							<ArrowUpRight className='w-6 h-6 md:w-8 md:h-8' />
+						</div>
+					</div>
+					<p
+						class='text-lg md:text-xl text-brand-black/70 max-w-sm font-medium leading-relaxed'
+					>
+						{t('blog.cta.demo.desc')}
+					</p>
+				</a>
+
+				<!-- About Us -->
+				<a
+					href='#footer'
+					class='group p-12 md:p-20 hover:bg-brand-black hover:text-white transition-colors duration-500 text-brand-black'
+				>
+					<div class='flex justify-between items-start mb-12'>
+						<h2
+							class='text-4xl md:text-6xl font-bold uppercase leading-none tracking-tighter group-hover:text-white transition-colors'
+						>
+							{t('blog.cta.about.title')}
+						</h2>
+						<div
+							class='w-12 h-12 md:w-16 md:h-16 border border-current rounded-full flex items-center justify-center group-hover:bg-brand-neon group-hover:text-brand-black group-hover:border-brand-neon transition-all'
+						>
+							<ArrowUpRight className='w-6 h-6 md:w-8 md:h-8' />
+						</div>
+					</div>
+					<p
+						class='text-lg md:text-xl opacity-70 group-hover:text-white/70 transition-opacity max-w-sm font-medium leading-relaxed'
+					>
+						{t('blog.cta.about.desc')}
+					</p>
+				</a>
+			</div>
+		</section>
+	</main>
+
+	<ActionFooter />
+</Layout>

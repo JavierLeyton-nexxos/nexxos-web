@@ -71,6 +71,10 @@ function getPathForLang(l: string) {
 				href={lang === 'es' ? '/infrastructure' : `/${lang}/infrastructure`}
 				class='hover:text-brand-blue transition-colors'>{t('nav.infra')}</a
 			>
+			<a
+				href={lang === 'es' ? '/blog' : `/${lang}/blog`}
+				class='hover:text-brand-blue transition-colors'>{t('nav.blog')}</a
+			>
 		</nav>
 
 		<!-- Desktop Actions -->
@@ -142,6 +146,11 @@ function getPathForLang(l: string) {
 						: `/${lang}/infrastructure`}
 					class='hover:text-brand-blue transition-colors'
 					>{t('nav.infra')}</a
+				>
+				<a
+					href={lang === 'es' ? '/blog' : `/${lang}/blog`}
+					class='hover:text-brand-blue transition-colors'
+					>{t('nav.blog')}</a
 				>
 			</nav>
 

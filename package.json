@@ -13,6 +13,7 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.6.0",
     "@fontsource/open-sans": "^5.2.7",
+    "@payloadcms/richtext-lexical": "^3.69.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.5",
     "lucide-react": "^0.561.0",
