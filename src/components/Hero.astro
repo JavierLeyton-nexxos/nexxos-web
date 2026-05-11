@@ -14,13 +14,13 @@ const t = useTranslations(lang)
 	<!-- Background Image with LCP Optimization -->
 	<div class='absolute inset-0 z-0'>
 		<div
-			class='absolute inset-0 bg-gradient-to-r from-brand-bone/90 via-brand-bone/50 to-transparent z-10'
+			class='absolute inset-0 bg-linear-to-r from-brand-bone/90 via-brand-bone/50 to-transparent z-10'
 		>
 		</div>
 		<Image
 			src={heroImage}
 			alt='Edificio moderno de nexxos AI Factory'
-			class='w-full h-full object-cover grayscale-[20%] opacity-60'
+			class='w-full h-full object-cover grayscale-20 opacity-60'
 			inferSize={true}
 			widths={[640, 1024, 1536, 1920]}
 			sizes='100vw'
@@ -41,11 +41,11 @@ const t = useTranslations(lang)
 
 		<!-- H1 -->
 		<h1
-			class='reveal delay-100 text-4xl sm:text-5xl md:text-7xl font-bold text-brand-black leading-[0.95] tracking-tighter mb-4 max-w-3xl uppercase'
+			class='reveal delay-100 text-4xl sm:text-5xl md:text-7xl font-bold text-brand-black leading-snug tracking-tighter mb-4 max-w-3xl uppercase'
 		>
 			{t('hero.title.pre')}
 			<span class='text-brand-blue'>{t('hero.title.highlight')}</span>
-			{t('hero.title.post')}
+			<span set:html={t('hero.title.post')} />
 		</h1>
 
 		<!-- H2 / Subtext -->
@@ -69,7 +69,7 @@ const t = useTranslations(lang)
 				href='#specs'
 				class='flex items-center justify-center gap-2 border border-brand-black/30 text-brand-black px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm hover:bg-brand-black hover:text-white transition-colors'
 			>
-				Ver Specs
+				{t('hero.cta2')}
 			</a>
 		</div>
 	</div>
